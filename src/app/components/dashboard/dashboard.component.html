@@ -1,1 +1,31 @@
-<p>dashboard works!</p>
+<div style="height: 80vh;">
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <img src="assets/images/logo.png" alt="" style="filter: invert(1); height: 100%;">
+      <span class="menu-spacer"></span>
+      <div fxShow="true" fxHide.lt-md>
+        <a href="/dashboard" mat-button>Home</a>
+        <a href="#" mat-button>Explore</a>
+        <a href="#" mat-button>Favorites</a>
+      </div>
+      <span class="menu-spacer"></span>
+      <div style="margin-left: auto;">
+        <button mat-raised-button (click)="logout()" color="warn">Logout</button>
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <br>
+  <mat-card style="width: 80%; margin: 0 auto;">
+    <mat-card-title>Dashboard</mat-card-title>
+    <mat-card-content>
+      <h2>Hungry and ready to cook?</h2>
+      <form class="example-container" #options="ngForm" style="text-align: center;">
+        <mat-form-field style="width: 100%;">
+          <textarea matInput name="ingredients" cols="35" rows="8" placeholder="Type your ingredients here" required></textarea>
+        </mat-form-field>
+        <button mat-raised-button color="primary" [disabled]="!options.valid" style="margin-top: 20px;"> Save </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+</div>

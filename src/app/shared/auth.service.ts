@@ -14,9 +14,9 @@ export class AuthService {
     this.fireauth.signInWithEmailAndPassword(email, password)
       .then((user) => {
         localStorage.setItem('token', 'true');
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['dashboard']);
       }, err =>{
-        alert('Something went wrong');
+        alert(err.message);
         this.router.navigate(['/login']);
       })
       .catch((error) => {
@@ -31,7 +31,7 @@ export class AuthService {
         alert('Registration successful');
         this.router.navigate(['/login']);
       }, err =>{
-        alert('Something went wrong');
+        alert(err.message);
         this.router.navigate(['/register']);
       })
       .catch((error) => {

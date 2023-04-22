@@ -1,1 +1,26 @@
-<p>register works!</p>
+<div fxLayout="row" fxLayoutAlign="center center" class="login-main">
+    <img src="assets/images/background.jpg" alt="">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>
+          <img src="assets/images/logo.png" alt="" style="display: block; margin: 0 auto;">
+        </mat-card-title>
+      </mat-card-header>
+      <h1 class="mat-card-title">Register to FridgeSenseApp</h1>
+      <form class="mat-form">
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" name="email" placeholder="Email" required [(ngModel)]="email">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" name="password" placeholder="Password" required [(ngModel)]="password">
+        </mat-form-field>
+        <div fxLayout="row" fxLayoutAlign="end center">
+          <button mat-raised-button type="submit" (click)="register()" color="primary">Register</button>
+        </div>
+        <p>Have an account <a href="/login">Login</a></p>
+      </form>
+    </mat-card>
+  </div>
+  
