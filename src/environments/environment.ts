@@ -11,7 +11,8 @@ export const environment = {
     storageBucket: "fridgesense-976ab.appspot.com",
     messagingSenderId: "667456380148",
     appId: "1:667456380148:web:7c40c898a8e7cb2f3992a1"
-  }
+  },
+  chatGptSecret: "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"
 };
 
 /*

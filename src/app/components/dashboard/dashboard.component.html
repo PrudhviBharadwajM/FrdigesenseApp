@@ -19,13 +19,12 @@
     <mat-card-title>Dashboard</mat-card-title>
     <mat-card-content>
       <h2>Hungry and ready to cook?</h2>
-      <form class="example-container" #options="ngForm" style="text-align: center;">
+      <form class="example-container" #options="ngForm">
         <mat-form-field style="width: 100%;">
-          <textarea matInput name="ingredients" cols="35" rows="8" placeholder="Type your ingredients here" required></textarea>
+          <textarea matInput name="ingredients" [(ngModel)]="ingredients" cols="35" rows="8" placeholder="Type your ingredients with a comman seperation here" required></textarea>
         </mat-form-field>
-        <button mat-raised-button color="primary" [disabled]="!options.valid" style="margin-top: 20px;"> Save </button>
+        <button (click)="getRecipes()" mat-raised-button color="primary" style="margin-top: 20px;"> Get Recipes </button>
       </form>
     </mat-card-content>
   </mat-card>
-
 </div>
