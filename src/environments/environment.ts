@@ -12,7 +12,7 @@ export const environment = {
     messagingSenderId: "667456380148",
     appId: "1:667456380148:web:7c40c898a8e7cb2f3992a1"
   },
-  chatGptSecret: "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"
+  chatGptSecret: "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"
 };
 
 /*
