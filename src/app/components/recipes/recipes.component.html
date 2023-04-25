@@ -18,34 +18,30 @@
     <mat-card style="width: 80%; margin: 0 auto;">
       <mat-card-title>Dashboard</mat-card-title>
       <mat-card-content>
-        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
-          <!--- Note that these columns can be defined in any order.
-                The actual rendered columns are set as a property on the row definition" -->
-        
-          <!-- Position Column -->
-          <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef> Name </th>
-            <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+          <!-- Recipe Name Column -->
+          <ng-container matColumnDef="RecipeName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Recipe Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.RecipeName}} </td>
           </ng-container>
         
-          <!-- Name Column -->
-          <ng-container matColumnDef="ingredients">
-            <th mat-header-cell *matHeaderCellDef> Ingredients </th>
-            <td mat-cell *matCellDef="let element"> {{element.ingredients }} </td>
+          <!-- Ingredients Column -->
+          <ng-container matColumnDef="Ingredients">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Ingredients </th>
+            <td mat-cell *matCellDef="let element"> {{element.Ingredients }} </td>
           </ng-container>
         
-          <!-- Weight Column -->
-          <ng-container matColumnDef="instructions">
+          <!-- Instructions Column -->
+          <ng-container matColumnDef="Instructions">
             <th mat-header-cell *matHeaderCellDef> Instructions </th>
-            <td mat-cell *matCellDef="let element"> {{element.instructions }} </td>
+            <td mat-cell *matCellDef="let element"> {{element.Instructions }} </td>
           </ng-container>
         
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
-        
-        
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 50]" showFirstLastButtons></mat-paginator>
       </mat-card-content>
     </mat-card>
   </div>

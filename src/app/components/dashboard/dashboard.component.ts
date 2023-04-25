@@ -18,7 +18,7 @@ export class DashboardComponent implements OnInit {
   }
 
   getRecipes() {
-    this.value = 'Please give me a list of recipes using ' + this.ingredients + ' in a JSON format';
+    this.value = 'Give me just the recipes using ' + this.ingredients + ' in a JSON array format with field names as RecipeName, Ingredients, and Instructions';
     this.gpt.getDataFromOpenAPI(this.value).then((data) => {
       this.router.navigate(['../recipes'], {state: {data: data}})
     }, (error) => {

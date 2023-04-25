@@ -28,7 +28,7 @@ export class OpenAiService {
       presence_penalty: 0,
     });
 
-  const response = completion.data.choices[0].text;
-  return response;
-}
+    const response = completion.data.choices[0].text;
+    return response;
+  }
 }
