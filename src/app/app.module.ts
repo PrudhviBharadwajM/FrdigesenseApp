@@ -24,13 +24,15 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { FormsModule } from '@angular/forms';
 import { RecipesComponent } from './components/recipes/recipes.component';
+import { ExploreComponent } from './components/explore/explore.component';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
     DashboardComponent,
-    RecipesComponent
+    RecipesComponent,
+    ExploreComponent
   ],
   imports: [
     BrowserModule,
