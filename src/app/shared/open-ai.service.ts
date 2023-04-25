@@ -18,17 +18,12 @@ export class OpenAiService {
   public openai = new OpenAIApi(this.configuration);
 
   async getDataFromOpenAPI(text: string) {
-    const completion = await this.openai.createCompletion({
-      model: "text-davinci-003",
-      prompt: text,
-      temperature: 0.7,
-      max_tokens: 256,
-      top_p: 1,
-      frequency_penalty: 0,
-      presence_penalty: 0,
+    const completion = await this.openai.createChatCompletion({
+      model: "gpt-3.5-turbo",
+      messages: [{role: "user", content: text}],
     });
     
-    const response = completion.data.choices[0].text;
+    const response = completion.data.choices[0].message?.content;
     return response;
 }
 }
