@@ -38,17 +38,7 @@ export class AuthService {
         window.alert(error.message);
       });
   }
-
-  // getCurrentUser
-
-  getCurrentUser() {
-    return this.fireauth.currentUser.then(user => {
-      return user;  
-    }, err => {
-      alert(err.message);
-    });
-  }
-
+  
   //logout
   logout() {
     this.fireauth.signOut().then(() => {

@@ -16,27 +16,34 @@
   </mat-toolbar>
   <br>
   <mat-card style="width: 80%; margin: 0 auto;">
-    <mat-card-title>Recipes to cook under 5 minutes</mat-card-title>
-    <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
+    <mat-card-title>Here are your results</mat-card-title>
     <mat-card-content>
       <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
         <!-- Recipe Name Column -->
         <ng-container matColumnDef="RecipeName">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Recipe Name </th>
-          <td mat-cell *matCellDef="let element"> {{element.RecipeName}} </td>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Recipe Name</th>
+          <td mat-cell *matCellDef="let element"> {{element.recipeName}}</td>
         </ng-container>
 
         <!-- Ingredients Column -->
         <ng-container matColumnDef="Ingredients">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Ingredients </th>
-          <td mat-cell *matCellDef="let element"> {{element.Ingredients }} </td>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Ingredients</th>
+          <td mat-cell *matCellDef="let element"> {{element.ingredients}}</td>
         </ng-container>
 
         <!-- Instructions Column -->
         <ng-container matColumnDef="Instructions">
-          <th mat-header-cell *matHeaderCellDef> Instructions </th>
-          <td mat-cell *matCellDef="let element"> {{element.Instructions }} </td>
+          <th mat-header-cell *matHeaderCellDef>Instructions</th>
+          <td mat-cell *matCellDef="let element"> {{element.instructions}}</td>
+        </ng-container>
+
+        <!-- Favorites Column -->
+        <ng-container matColumnDef="Favorites">
+          <th mat-header-cell *matHeaderCellDef>Remove From Favorites</th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-button color="danger" (click)="removeFromFavorites(element)">Remove from Favorites</button>
+          </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

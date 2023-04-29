@@ -20,11 +20,13 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import {MatIconModule} from '@angular/material/icon';
 import {MatTableModule} from '@angular/material/table';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { FormsModule } from '@angular/forms';
 import { RecipesComponent } from './components/recipes/recipes.component';
 import { ExploreComponent } from './components/explore/explore.component';
+import { FavoritesComponent } from './components/favorites/favorites.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +34,8 @@ import { ExploreComponent } from './components/explore/explore.component';
     RegisterComponent,
     DashboardComponent,
     RecipesComponent,
-    ExploreComponent
+    ExploreComponent,
+    FavoritesComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +56,8 @@ import { ExploreComponent } from './components/explore/explore.component';
     MatIconModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatProgressBarModule 
   ],
   
   providers: [],

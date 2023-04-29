@@ -15,7 +15,8 @@ export class ExploreComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = ['RecipeName', 'Ingredients', 'Instructions'];
   value: any;
   ingredients: any;
-  
+  isLoading: boolean = false;
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -31,12 +32,15 @@ export class ExploreComponent implements OnInit, AfterViewInit {
   }
 
   getRecipes() {
+    this.isLoading = true;
     this.value = 'Give me a list of recipes under 5 minutes in a JSON array format with field names as RecipeName, Ingredients, and Instructions';
     this.gpt.getDataFromOpenAPI(this.value).then((data) => {
       this.ingredients = data?.trim();
-      this.dataSource.data = JSON.parse(this.ingredients); 
+      this.dataSource.data = JSON.parse(this.ingredients);
+      this.isLoading = false;
       console.log(this.dataSource.data);
     }, (error) => {
+      
       alert(error.message);
     });
   }

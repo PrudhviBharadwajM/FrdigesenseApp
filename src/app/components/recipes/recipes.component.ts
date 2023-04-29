@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/auth.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Component({
   selector: 'app-recipes',
@@ -18,7 +19,7 @@ export class RecipesComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private route: ActivatedRoute, private auth: AuthService){ }
+  constructor(private route: ActivatedRoute, private auth: AuthService, private fireauth: AngularFireAuth, private router: Router){}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(() => {
@@ -32,12 +33,23 @@ export class RecipesComponent implements OnInit, AfterViewInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  addToFavorites(recipe: any) {
-    const user = this.auth.getCurrentUser();
-    console.log(recipe);
-    console.log(user);
+  async addToFavorites(recipe: any) {
+    let user = await this.fireauth.currentUser;
+    let favorites = JSON.parse(localStorage.getItem('favorites') || '{}');
+    if (user && !favorites[user.uid]) {
+      favorites[user.uid] = [];
+    }
+    if(user) {
+      favorites[user.uid].push({
+        recipeName: recipe.RecipeName,
+        ingredients: recipe.Ingredients,
+        instructions: recipe.Instructions,
+      });
+      localStorage.setItem('favorites', JSON.stringify(favorites));
+      
+    }
   }
-
+  
   logout() {
     this.auth.logout();
   }

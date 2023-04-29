@@ -4,9 +4,9 @@
       <img src="assets/images/logo.png" alt="" style="filter: invert(1); height: 100%;">
       <span class="menu-spacer"></span>
       <div fxShow="true" fxHide.lt-md>
-        <a href="/dashboard" mat-button>Home</a>
-        <a href="/explore" mat-button>Explore</a>
-        <a href="#" mat-button>Favorites</a>
+        <a routerLink="/dashboard" mat-button>Home</a>
+        <a routerLink="/explore" mat-button>Explore</a>
+        <a routerLink="/favorites" mat-button>Favorites</a>
       </div>
       <span class="menu-spacer"></span>
       <div style="margin-left: auto;">
@@ -21,9 +21,12 @@
       <h2>Hungry and ready to cook?</h2>
       <form class="example-container" #options="ngForm">
         <mat-form-field style="width: 100%;">
-          <textarea matInput name="ingredients" [(ngModel)]="ingredients" cols="35" rows="8" placeholder="Type your ingredients with a comman seperation here" required></textarea>
+          <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
+          <textarea matInput name="ingredients" [(ngModel)]="ingredients" cols="35" rows="8"
+            placeholder="Type your ingredients with a comman seperation here" required></textarea>
         </mat-form-field>
-        <button (click)="getRecipes()" mat-raised-button color="primary" style="margin-top: 20px;"> Get Recipes </button>
+        <button (click)="getRecipes()" mat-raised-button color="primary" style="margin-top: 20px;"> Get Recipes
+        </button>
       </form>
     </mat-card-content>
   </mat-card>
