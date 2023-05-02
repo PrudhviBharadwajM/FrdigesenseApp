@@ -21,12 +21,14 @@ import {MatListModule} from '@angular/material/list';
 import {MatIconModule} from '@angular/material/icon';
 import {MatTableModule} from '@angular/material/table';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { FormsModule } from '@angular/forms';
 import { RecipesComponent } from './components/recipes/recipes.component';
 import { ExploreComponent } from './components/explore/explore.component';
 import { FavoritesComponent } from './components/favorites/favorites.component';
+import { DialogComponent } from './components/dialog/dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +37,8 @@ import { FavoritesComponent } from './components/favorites/favorites.component';
     DashboardComponent,
     RecipesComponent,
     ExploreComponent,
-    FavoritesComponent
+    FavoritesComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +60,8 @@ import { FavoritesComponent } from './components/favorites/favorites.component';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    MatProgressBarModule 
+    MatProgressBarModule,
+    MatDialogModule
   ],
   
   providers: [],

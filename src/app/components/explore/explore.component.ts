@@ -1,10 +1,12 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { AuthService } from 'src/app/shared/auth.service';
 import { OpenAiService } from 'src/app/shared/open-ai.service';
+import { DialogComponent } from '../dialog/dialog.component';
 
 @Component({
   selector: 'app-explore',
@@ -21,10 +23,21 @@ export class ExploreComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private auth: AuthService, private gpt: OpenAiService, private fireauth: AngularFireAuth,) { }
+  constructor(private auth: AuthService, private gpt: OpenAiService, private fireauth: AngularFireAuth,private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getRecipes();
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width: '30%',
+      data: { name: 'cooking.gif' }
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 
   ngAfterViewInit(): void {
@@ -35,11 +48,12 @@ export class ExploreComponent implements OnInit, AfterViewInit {
   getRecipes() {
     this.isLoading = true;
     this.value = 'Give me a list of recipes under 5 minutes in a JSON array format with field names as RecipeName, Ingredients, and Instructions';
+    this.openDialog();
     this.gpt.getDataFromOpenAPI(this.value).then((data) => {
       this.ingredients = data?.trim();
       this.dataSource.data = JSON.parse(this.ingredients);
       this.isLoading = false;
-      console.log(this.dataSource.data);
+      this.dialog.closeAll();
     }, (error) => {
       
       alert(error.message);
