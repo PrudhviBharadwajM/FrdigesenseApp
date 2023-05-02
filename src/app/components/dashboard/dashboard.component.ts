@@ -12,6 +12,7 @@ export class DashboardComponent implements OnInit {
 
   ingredients: string = '';
   isLoading: boolean = false;
+  isSubmitting: boolean = false;
   value: string = '';
   constructor(private auth: AuthService, private gpt: OpenAiService, private router: Router) { }
 
@@ -20,6 +21,7 @@ export class DashboardComponent implements OnInit {
 
   getRecipes() {
     this.isLoading = true;
+    this.isSubmitting = true;
     this.value = 'Give me just the recipes using ' + this.ingredients + ' in a JSON array format with field names as RecipeName, Ingredients, and Instructions';
     this.gpt.getDataFromOpenAPI(this.value).then((data) => {
       this.isLoading = false;

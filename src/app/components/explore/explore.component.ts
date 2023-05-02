@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -12,7 +13,7 @@ import { OpenAiService } from 'src/app/shared/open-ai.service';
 })
 export class ExploreComponent implements OnInit, AfterViewInit {
   dataSource = new MatTableDataSource<any>();
-  displayedColumns: string[] = ['RecipeName', 'Ingredients', 'Instructions'];
+  displayedColumns: string[] = ['RecipeName', 'Ingredients', 'Instructions', 'Favorites'];
   value: any;
   ingredients: any;
   isLoading: boolean = false;
@@ -20,7 +21,7 @@ export class ExploreComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private auth: AuthService, private gpt: OpenAiService) { }
+  constructor(private auth: AuthService, private gpt: OpenAiService, private fireauth: AngularFireAuth,) { }
 
   ngOnInit(): void {
     this.getRecipes();
@@ -43,6 +44,24 @@ export class ExploreComponent implements OnInit, AfterViewInit {
       
       alert(error.message);
     });
+  }
+  
+  async addToFavorites(recipe: any) {
+    debugger;
+    let user = await this.fireauth.currentUser;
+    let favorites = JSON.parse(localStorage.getItem('favorites') || '{}');
+    if (user && !favorites[user.uid]) {
+      favorites[user.uid] = [];
+    }
+    if(user) {
+      favorites[user.uid].push({
+        recipeName: recipe.RecipeName,
+        ingredients: recipe.Ingredients,
+        instructions: recipe.Instructions,
+      });
+      localStorage.setItem('favorites', JSON.stringify(favorites));
+      alert('Recipe added successfully!');
+    }
   }
   
   logout() {

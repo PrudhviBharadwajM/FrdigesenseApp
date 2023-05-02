@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/27ac8b43-56a7-4f0d-9795-88005060b09f/resourceGroups/SSDI-ResourceGroup/providers/Microsoft.Web/sites/fridgesense",
+    "appService.deploySubpath": "dist"
+}

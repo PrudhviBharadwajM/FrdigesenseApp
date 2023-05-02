@@ -45,6 +45,7 @@ mat-card-header {
   align-items: center;
 }
 img {
-  display: block;
-  margin: 0 auto;
+  width: 75%;
+  height: 100%;
+  object-fit: cover;
 }

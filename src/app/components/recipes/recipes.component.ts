@@ -46,7 +46,7 @@ export class RecipesComponent implements OnInit, AfterViewInit {
         instructions: recipe.Instructions,
       });
       localStorage.setItem('favorites', JSON.stringify(favorites));
-      
+      alert('Recipe added successfully!');
     }
   }
   

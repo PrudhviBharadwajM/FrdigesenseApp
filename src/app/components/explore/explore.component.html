@@ -39,6 +39,14 @@
           <td mat-cell *matCellDef="let element"> {{element.Instructions }} </td>
         </ng-container>
 
+        <!-- Favorites Column -->
+        <ng-container matColumnDef="Favorites">
+          <th mat-header-cell *matHeaderCellDef> Add to Favorites </th>
+          <td mat-cell *matCellDef="let element"> 
+            <button mat-button color="primary" (click)="addToFavorites(element)">Add to Favorites</button>
+          </td>
+        </ng-container>
+
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
