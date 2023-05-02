@@ -47,7 +47,7 @@ export class ExploreComponent implements OnInit, AfterViewInit {
 
   getRecipes() {
     this.isLoading = true;
-    this.value = 'Give me a list of recipes under 5 minutes in a JSON array format with field names as RecipeName, Ingredients, and Instructions';
+    this.value = 'Give me a list of recipes under 5 minutes in a JSON array format with field names as RecipeName, Ingredients, and Instructions and in this format of JSON array [{},{},{}] without any space in the start of JSON array and end of JSON array.';
     this.openDialog();
     this.gpt.getDataFromOpenAPI(this.value).then((data) => {
       this.ingredients = data?.trim();
