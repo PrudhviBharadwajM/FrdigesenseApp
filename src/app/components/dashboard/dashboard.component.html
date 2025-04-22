@@ -23,7 +23,7 @@
         <mat-form-field style="width: 100%;">
           <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
           <textarea matInput name="ingredients" [(ngModel)]="ingredients" cols="35" rows="8"
-            placeholder="Type your ingredients with a comman seperation here" [disabled]="isSubmitting" required></textarea>
+          placeholder="Type your ingredients with a comma seperation here" [disabled]="isSubmitting" required></textarea>
         </mat-form-field>
         <button (click)="getRecipes()" [disabled]="isSubmitting" isSubmitting = true; mat-raised-button color="primary" style="margin-top: 20px;"> Get Recipes
         </button>
